@@ -4,16 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Session 연습</title>
 </head>
 <body>
-<form id="frm" method="post" action="./loginok.do">
+<form id="frm">
 아이디 : <input type="text" name="mid">
-<input type="button" value="전송" onclick="click()">
+<input type="button" value="전송" onclick="post_data()">
 </form>
 </body>
 <script>
-function click(){
+function post_data(){
+	frm.method="post";
+	frm.action="./loginok.do";
 	frm.submit();
 }
 </script>

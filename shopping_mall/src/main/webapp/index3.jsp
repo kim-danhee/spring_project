@@ -3,8 +3,8 @@
 <%
 	HttpSession hs = request.getSession();
 	String mid = (String)hs.getAttribute("mid");
-	out.print(hs);
-	hs.invalidate(); //session 전체삭제
+	out.print(mid);
+	hs.invalidate();	//session 전체삭제
 %>
 <!DOCTYPE html>
 <html>
