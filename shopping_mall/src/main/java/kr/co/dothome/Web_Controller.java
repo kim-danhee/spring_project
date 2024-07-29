@@ -1,9 +1,10 @@
 package kr.co.dothome;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -17,12 +18,60 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.mysql.cj.xdevapi.JsonArray;
 
+//md5 : 회원가입, 로그인, 패스워드 변경, 1:1 문의, 자유게시판, 상품구매,
 @Controller
-public class Web_Controller {
+public class Web_Controller extends md5_pass {
 	
 	PrintWriter pw = null;
+	
+	//DAO (@ModelAttribute)
+	//DAO가 없이 사용 시 자료형 객체 or @Requestparam을 이용해서 사용
+	
+	@Resource(name="userselect")
+	private user_select us;
+	
+	@PostMapping("/idsearch.do")
+	public String idsearch(String[] uname, String uemail, HttpServletResponse res) throws Exception{		//아이디 찾기
+		res.setContentType("text/html;charset=utf-8");
+		this.pw = res.getWriter();
+		try {
+		if(uname == null || uemail == null) {
+			this.pw.print("<script> alert('올바른 접근방식이 아닙니다.'); history.go(-1); </script>");
+		}else {
+			ArrayList<Object> onedata = us.search_id(uname[0], uemail);
+		}
+		}catch(Exception e) {
+			System.out.println(e);
+			this.pw.print("<script> alert('Database문제로 인하여 해당 정보가 확인되지 않았습니다.'); history.go(-1); </script>");
+		}finally {
+			
+		}
+		return null;
+	}
+	
+	
+	@PostMapping("/passmodify.do")
+	public String passmodify() {	//패스워드 변경
+		
+		return null;
+	}
+	
+	
+	/*
+	@Resource(name="md5pass")
+	private md5_pass md;
+	*/
+	
+	@GetMapping("/passwd.do")
+	public String passwd() {
+		String pwd ="a1234";
+		String result = this.md5_making(pwd);
+		System.out.println(result);
+		
+		return null;
+	}
+	
 	
 	@GetMapping("/restapi.do")
 	//@SessionAttribute : session이 이미 등록되 있는 상황일 경우 해당 정보를 가져올 수 있음
