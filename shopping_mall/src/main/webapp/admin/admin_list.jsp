@@ -17,6 +17,7 @@
     <link rel="icon" href="./img/logo.png" sizes="16x16">
 </head>
 <body>
+<form>
 <header class="headercss">
     <div class="header_div">
         <p><img src="./img/logo.png" class="logo_sm"> ADMINISTRATOR</p>
@@ -52,18 +53,23 @@
         <li>신규 등록된 관리자가 없습니다.</li>
     </ol>
     <ol class="new_admin_lists2">
-        <li>1</li>
-        <li>한석봉</li>
-        <li>hansbong</li>
-        <li>01012345678</li>
-        <li>hansbong@hanmail.net</li>
-        <li>디자인팀</li>
-        <li>주임</li>
-        <li>2024-07-29</li>
+    <cr:forEach var="listdata" items="${list}">
+        <!-- 
+        <li>NO</li>
+        <li>${listdata.mname}</li>
+        <li>${listdata.mid}</li>
+        <li>${listdata.mpw}</li>
+        <li>${listdata.memail}</li>
+        <li>${listdata.mteam}</li>
+        <li>${listdata.mposition}</li>
+        <li>${listdata.mdate}</li>
         <li>
-            <input type="button" value="승인" class="new_addbtn1" title="승인">
-            <input type="button" value="미승인" class="new_addbtn2" title="미승인">
+            <input type="button" value="승인" class="new_addbtn1" title="승인" id="btn">
+            <input type="button" value="미승인" class="new_addbtn2" title="미승인" id="btn2">
         </li>
+         -->
+         
+        </cr:forEach>
     </ol>
 </section>
 <section></section>
@@ -74,5 +80,9 @@
         Copyright ⓒ 2024 shopbag All rights reserved.
     </div>
 </footer>
+</form>
 </body>
+<script>
+
+</script>
 </html>

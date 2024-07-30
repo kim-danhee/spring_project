@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class admin_Controller {
@@ -22,17 +23,22 @@ public class admin_Controller {
 	private admin_module am;
 	
 	
-	@PostMapping("/admin/admin_list.do")
-	private String admin_list(Model m, String mid, HttpServletResponse res){
+	@GetMapping("/admin/admin_list.do")
+	private String admin_list(Model m, HttpServletResponse res){
 		List<admin_dao> list = am.adminlist();
-		admin_dao dao = null;
 		
-		if(mid != null) {
-			//dao = am.ajax_id(mid);
-		}
-
+		/*this.pw.print(""
+				+ "sessionStorage.setItem('mname','"+list.get(2)+"');"
+				+ "sessionStorage.setItem('mid','"+list.get(3)+"');"
+				+ "sessionStorage.setItem('mpw','"+list.get(4)+"');"
+				+ "sessionStorage.setItem('memail','"+list.get(5)+"');"
+				+ "sessionStorage.setItem('mteam','"+list.get(7)+"');"
+				+ "sessionStorage.setItem('mposition','"+list.get(8)+"');"
+				+ "sessionStorage.setItem('mdate','"+list.get(9)+"')");
+		this.pw.close();*/
 		
-		
+		m.addAttribute("list",list);
+				
 		return null;
 	}
 	
@@ -45,12 +51,12 @@ public class admin_Controller {
 			int callback = am.add_master(dao);
 			if(callback > 0) {
 				this.pw.print("<script>alert('성공적으로 등록되었습니다. (※ 가입완료 후 전산 담당자가 확인 후 로그인 할 수 있습니다.)'); location.href='./admin_list.do'; </script>");				
+				//System.out.println(dao);
 			}else {
 				this.pw.print("<script>alert('등록에 실패하였습니다.'); history.go(-1); </script>");
 			}
 		}catch(Exception e) {
 			System.out.println(e);
-			System.out.println(dao.memail);
 			this.pw.print("db오류발생");
 		}finally {
 			pw.close();
@@ -60,10 +66,23 @@ public class admin_Controller {
 	
 	
 	@GetMapping("/admin/idcheck.do")
-	public String idcheck(HttpServletResponse res) {
+	public String idcheck(@RequestParam(defaultValue = "", required = false) String mid,HttpServletResponse res) {
+		res.setContentType("text/html; charset=utf-8");
 		
+		try {
+			if(!mid.equals("")) {
+				String checks=am.ajax_id(mid);
+				this.pw=res.getWriter();
+				this.pw.write(checks);
+			}
+		} catch (Exception e) {
+			this.pw.write("error");
+		} finally {
+			this.pw.close();
+		}
 		return null;
 	}
+	
 	
 	@PostMapping("/admin/admin_main.do")
 	private String add_master() {

@@ -40,10 +40,11 @@
 					<li><input type="text" class="add_input1 emails"
 						placeholder="담당자 이메일을 입력하세요" name="memail"></li>
 					<li class="font_color1"><input type="text"
-						class="add_input1 hp1" placeholder="HP" value="010" maxlength="3" name="mhp1">
+						class="add_input1 hp1" placeholder="HP" value="010" maxlength="3" name="hp">
 						- <input type="text" class="add_input1 hp2" placeholder="1234"
-						maxlength="4" name="mhp2"> - <input type="text" class="add_input1 hp2"
-						placeholder="5678" maxlength="4" name="mhp3"></li>
+						maxlength="4" name="hp"> - <input type="text" class="add_input1 hp2"
+						placeholder="5678" maxlength="4" name="hp"></li>
+						<input type="hidden" name="mhp">
 					<li class="font_color1">관리자 담당부서 및 직책</li>
 					<li><select class="add_select1" name="mteam">
 							<option>담당자 부서를 선택하세요</option>
@@ -78,19 +79,21 @@
 	</form>
 </body>
 <script>
-	function idcheck(id) {
-		if (id != "") {
+	function idcheck(mid) {
+		if (mid != "") {
 			var ajax = new XMLHttpRequest();
 			ajax.onreadystatechange = function() {
 				if (ajax.readyState == 4 && ajax.status == 200) {
 					if (this.response != 0) {
-						document.getElementById("error_red").style.display = "block";
+						//document.getElementById("error_red").style.display = "block";
+						console.log("abc");
 					} else {
-						document.getElementById("error_red").style.display = "none";
+						//document.getElementById("error_red").style.display = "none";
+						console.log("zzz");
 					}
 				}
 			}
-			ajax.open("POST", "./admin/add_master.do", true);
+			ajax.open("POST","./admin/add_master.do", true);
 			ajax.send();
 		} else {
 			var idck = frm.mid.value;

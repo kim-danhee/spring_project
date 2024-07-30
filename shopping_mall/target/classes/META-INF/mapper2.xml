@@ -11,7 +11,7 @@ select * from add_master order by midx desc
 
 <!-- add_master 관리자 신규추가 -->
 <insert id="add_master">
-insert into add_master values ('0',#{mid},#{mpw},#{mname},#{memail},#{mhp1},#{mhp2},#{mhp3},#{mteam},#{mposition},now())
+insert into add_master values ('0',#{mid},#{mpw},#{mname},#{memail},#{mhp},#{mteam},#{mposition},now())
 </insert>
 
 <!-- id 중복체크 -->
