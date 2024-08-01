@@ -32,7 +32,7 @@
 							onclick="idcheck(this.value)">중복체크</button></li>
 					<li><input type="password" class="add_input1"
 						placeholder="접속할 패스워드를 입력하세요" name="mpw"> <input
-						type="password" class="add_input1" placeholder="동일한 패스워드를 입력하세요">
+						type="password" class="add_input1" placeholder="동일한 패스워드를 입력하세요" name="mpw_ck">
 					</li>
 					<li class="font_color1">관리자 기본정보 입력</li>
 					<li><input type="text" class="add_input1"
@@ -66,8 +66,8 @@
 					<li class="font_color1">※ 가입완료 후 전산 담당자가 확인 후 로그인 할 수 있습니다.</li>
 				</ul>
 				<span class="admin_addbtn">
-					<button type="button" class="btn_button btncolor1" title="관리자 등록"
-						onclick="add()">관리자 등록</button>
+					<input type="button" class="btn_button btncolor1" value="관리자 등록"
+						onclick="add()">관리자 등록</input>
 					<button type="button" class="btn_button btncolor2" title="관리자 취소">등록
 						취소</button>
 				</span>
@@ -102,11 +102,6 @@
 			}
 		}
 	}
-
-	function add() {
-		frm.method = "post";
-		frm.action = "./add_masterok.do"
-		frm.submit();
-	}
 </script>
+<script src="./js/add_master.js?v=2"></script>
 </html>

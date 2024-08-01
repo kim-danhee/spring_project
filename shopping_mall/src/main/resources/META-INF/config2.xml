@@ -4,6 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-	<typeAlias alias="admindao" type="shopping.admin_dao"/>
+	<typeAlias alias="admindao" type="admin.admin_dao"/>
+	<typeAlias alias="adminsitedao" type="admin.admin_site_dao"/>
 	</typeAliases>
 </configuration>
