@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -13,7 +15,6 @@
     <link rel="icon" href="./img/logo.png" sizes="64x64">
     <link rel="icon" href="./img/logo.png" sizes="32x32">
     <link rel="icon" href="./img/logo.png" sizes="16x16">
-	<script src="./js/jquery.js"></script>
 </head>
 <body>
 <header class="headercss">
@@ -45,7 +46,7 @@
 <ul class="info_form">
     <li>관리자 메일 주소</li>
     <li>
-        <input type="text" class="in_form2"> ※ 관리자가 보내고 받는 용도로 사용하는 메일 주소를 입력합니다.(회원가입,인증메일,회원메일발송 등에서 사용)
+        ${dao.remail} ※ 관리자가 보내고 받는 용도로 사용하는 메일 주소를 입력합니다.(회원가입,인증메일,회원메일발송 등에서 사용)
     </li>
 </ul> 
 <ul class="info_form">
@@ -58,7 +59,7 @@
 <ul class="info_form2" style="border-bottom:1px solid rgb(81, 61, 61);">
     <li>회원가입시 적립금</li>
     <li>
-        <%= %> 점
+        <input type="text" class="in_form3" maxlength="5"> 점
     </li>
     <li>회원가입시 권한레벨</li>
     <li>

@@ -14,7 +14,13 @@ public class admin_module {
 	@Resource(name = "template2")
 	private SqlSessionTemplate tm;
 
+	public admin_site_dao siteinfo(String semail){
+		admin_site_dao dao = tm.selectOne("shopping_db.admin_infocheck", semail);		
+		return dao;
+	}
 	
+	
+	//홈페이지 가입 정보 추가
 	public int admin_siteinfo(admin_site_dao dao) {
 		int result = tm.insert("shopping_db.admin_siteinfo", dao);
 		return result;

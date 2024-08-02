@@ -22,54 +22,54 @@ public class admin_Controller {
 	@Resource(name = "shopping")
 	private admin_module am;
 
-	
+	@GetMapping("/admin/admin_sitecheck.do")
+	public String sitecheck(Model m, String semail) {
+		admin_site_dao dao = null;
+
+		try {
+			dao = am.siteinfo(semail);
+			m.addAttribute("info",dao);
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return "admin_sitecheck";
+	}
+
 	@GetMapping("/admin/admin_siteinfo_ok.do")
 	public String siteinfo(@ModelAttribute("admin") admin_site_dao dao, HttpServletResponse res) throws Exception {
 		res.setContentType("text/html; charset=utf-8");
-		
 		this.pw = res.getWriter();
-		
 		try {
-		int result = am.admin_siteinfo(dao);
-		if(result > 0) {
-		this.pw.print("<script>"
-				+ "alert('성공적으로 저장되었습니다.');"
-				+ "</script>");		
-		}
-		else {
-			this.pw.print("<script>"
-					+ "alert('저장에 실패하였습니다.');"
-					+ "</script>");
-		}
-		}
-		catch(Exception e) {
+			int result = am.admin_siteinfo(dao);
+			if (result > 0) {
+				this.pw.print("<script>" + "alert('성공적으로 저장되었습니다.');" + "</script>");
+			} else {
+				this.pw.print("<script>" + "alert('저장에 실패하였습니다.');" + "</script>");
+			}
+		} catch (Exception e) {
 			System.out.println(e);
 			this.pw.print("오류발생");
-		}
-		finally {
+		} finally {
 			pw.close();
 		}
 		return null;
 	}
-	
-	
-	
+
 	@GetMapping("/admin/admin_list.do")
 	private String admin_list(Model m, HttpServletResponse res) throws Exception {
-		//this.pw = res.getWriter();
+		// this.pw = res.getWriter();
 		List<admin_dao> list = null;
-		//admin_dao dao = null;
+		// admin_dao dao = null;
 		try {
-				list = am.adminlist();
-				m.addAttribute("list", list);			
-		} 
-		catch (Exception e) {
+			list = am.adminlist();
+			m.addAttribute("list", list);
+		} catch (Exception e) {
 
 		}
-		
+
 		return "admin_list";
 	}
-
 
 	@PostMapping("/admin/add_masterok.do")
 	private String add_masterok(@ModelAttribute("admin") admin_dao dao, HttpServletResponse res) throws Exception {

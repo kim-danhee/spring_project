@@ -1,4 +1,6 @@
-function save(){
+function save(e){
+	frm.semail.value =e;
+	
 	if(frm.sptitle.value == ""){
 		alert('홈페이지 제목은 필수 입력값입니다.');
 	}
@@ -47,9 +49,9 @@ function save(){
 	else if(frm.sdelprice.value == ""){
 		alert('배송비는 필수 입력값입니다.');
 	}
-	else{		
+	else{
 	frm.method="get"
-	frm.action="./admin_siteinfo_ok.do"
+	frm.action="./admin_sitecheck.do";
 	frm.submit();
 	}	
 }
