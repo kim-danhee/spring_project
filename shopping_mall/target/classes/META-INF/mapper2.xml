@@ -2,6 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="shopping_db">
 
+<!-- 카테고리 - 대메뉴명 select -->
+<select id="menucode_nm" resultType="admindao">
+select * from cate where cmenucode=#{cname} order by cidx desc
+</select>
+
+
+<!-- 카테고리 리스트 출력 -->
+<select id="cate_list" resultType="admindao">
+select * from cate order by cidx desc
+</select>
+
+<!-- 카테고리 신규등록 -->
+<insert id="cate_write">
+insert into cate values ('0',#{ccode},#{cmenucode},#{cname},#{cuse},now())
+</insert>
+
+
 <!-- 홈페이지 정보 확인 -->
 <select id="admin_infocheck" resultType="adminsitedao">
 select * from admin_site_dao where sidx=#{sidx} order by sidx desc

@@ -21,7 +21,55 @@ public class admin_Controller {
 
 	@Resource(name = "shopping")
 	private admin_module am;
-
+	
+	
+	
+	@GetMapping("/admin/product_write.do")
+	public String product_write(Model m) {
+		List<admin_dao> list = null;
+		
+		try {
+		list = am.catelist();
+		m.addAttribute("list", list);
+		
+		}
+		catch(Exception e) {
+		System.out.println(e);
+		}
+		return "product_write";
+	}
+	
+	
+	@GetMapping("/admin/cate_list.do")
+	public String cate_list(Model m) throws Exception{		
+		List<admin_dao> list = null;
+		
+		try {
+		list = am.catelist();
+		m.addAttribute("list", list);
+		//System.out.println(list.get(0));
+		}
+		catch(Exception e) {
+		}
+		return "cate_list";
+	}
+	
+	
+	@PostMapping("/admin/cate_writeok.do")
+	public String cate_writeok(@ModelAttribute("cate") admin_dao dao, HttpServletResponse res) throws Exception {
+		res.setContentType("text/html; charset=utf-8");
+		this.pw = res.getWriter();
+		int result = am.cate_write(dao);
+		if(result > 0) {
+			this.pw.print("<script> alert('카테고리가 등록되었습니다.'); history.go(-1); </script>");
+		}
+		else {
+			this.pw.print("<script> alert('등록에 실패하였습니다.'); history.go(-1); </script>");
+		}
+		
+		return null;
+	}
+	
 	@GetMapping("/admin/admin_sitecheck.do")
 	public String sitecheck(Model m, String semail) {
 		admin_site_dao dao = null;

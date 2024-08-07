@@ -8,4 +8,6 @@ import lombok.Setter;
 public class admin_dao {
 	int midx;
 	String mid,mpw,mname,memail,mhp,mteam,mposition,mdate;
+	int cidx;
+	String ccode,cmenucode,cname,cuse,cdate;
 }
