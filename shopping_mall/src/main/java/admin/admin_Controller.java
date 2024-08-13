@@ -23,6 +23,22 @@ public class admin_Controller {
 	private admin_module am;
 	
 	
+	@PostMapping("/admin/product_writeok.do")
+	public String product_writeok(@ModelAttribute("product") admin_dao dao, HttpServletResponse res) throws Exception {
+		res.setContentType("text/html; charset=utf-8");
+		
+		this.pw = res.getWriter();
+		int result = am.product_write(dao);
+		if(result > 0) {
+			this.pw.print("<script> alert('상품이 성공적으로 등록되었습니다.'); location.href='./product_list.jsp'; </script>");
+		}
+		else {
+			this.pw.print("<script> alert('등록에 실패하였습니다.'); history.go(-1); </script>");
+		}
+		
+		return null;
+	}
+
 	
 	@GetMapping("/admin/product_write.do")
 	public String product_write(Model m) {

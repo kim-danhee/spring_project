@@ -102,7 +102,7 @@
 </section>
 </main>
 <footer class="main_copyright">
-    <div>
+    <div> 
         Copyright ⓒ 2024 shopbag All rights reserved.
     </div>
 </footer>

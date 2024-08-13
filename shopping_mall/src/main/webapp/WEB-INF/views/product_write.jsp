@@ -1,6 +1,17 @@
+<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="cr" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	Random rd = new Random();
+	String pcode = "";
+	int w=1;
+	while(w <7){
+		pcode += rd.nextInt(9);
+		w++;
+	}
+	request.setAttribute("pcode", pcode);
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -35,6 +46,7 @@
     </div>
 
 </nav>
+<form id="frm" enctype="multipart/form-data">
 <main class="maincss">
 <section>
 <p>상품 등록 페이지</p>
@@ -42,17 +54,18 @@
     <ul>
         <li>대메뉴 카테고리</li>
         <li>
-            <select class="product_input1" name="pcate">
+            <select class="product_input1" name="pcate" id="pcate">
             <cr:forEach var="listdata" items="${list}">
-            <option>${listdata.cname}</option>
+            <option value="${listdata.cname}">${listdata.cname}</option>
             </cr:forEach>
-            </select><input type="button" value="카테고리 등록" title="카테고리 등록" class="product_btn" id="cate"> <span class="help_text">※ 해당 카테고리가 없을 경우 신규 등록하시길 바랍니다.</span>
+            </select>
+            <input type="button" value="카테고리 등록" title="카테고리 등록" class="product_btn" id="cate"> <span class="help_text">※ 해당 카테고리가 없을 경우 신규 등록하시길 바랍니다.</span>
         </li>
     </ul>
     <ul>
         <li>상품코드</li>
         <li>
-            <input type="text" class="product_input1" name="pcode"> 
+            <input type="text" class="product_input1" name="pcode" value="<%=pcode%>"> 
             <input type="button" value="중복확인" title="중복확인" class="product_btn"> <span class="help_text">※ 상품코드는 절대 중복되지 않도록 합니다.</span>
         </li>
     </ul>
@@ -77,13 +90,13 @@
     <ul>
         <li>할인율</li>
         <li>
-            <input type="text" class="product_input3" maxlength="2" name="prate" value="0">% <span class="help_text">※ 숫자만 입력하세요</span>
+            <input type="text" class="product_input3" maxlength="2" name="prate" value="0" onchange="rate(this.value)">% <span class="help_text">※ 숫자만 입력하세요</span>
         </li>
     </ul>
     <ul>
         <li>할인가격</li>
         <li>
-            <input type="text" class="product_input3" maxlength="7" name="psaleprice" value="0" readonly> <span class="help_text">※ 할인율이 0%일 경우 할인가격은 0으로 처리 합니다.</span>
+            <input type="text" class="product_input3" maxlength="7" name="psaleprice" value="" readonly> <span class="help_text">※ 할인율이 0%일 경우 할인가격은 0으로 처리 합니다.</span>
         </li>
     </ul>
     <ul>
@@ -110,7 +123,7 @@
                 <input type="radio" name="psoldout" value="y" style="vertical-align:-1px;" checked> 사용
             </label>
             <label class="product_label">
-                <input type="radio" name="psoldout" value="n" style="vertical-align:-1px;" checked> 미사용
+                <input type="radio" name="psoldout" value="n" style="vertical-align:-1px;"> 미사용
             </label>
         </li>
     </ul>
@@ -142,11 +155,12 @@
 </div>
 <div class="subpage_view4" style="text-align:center; margin-bottom: 100px;">
     <input type="button" value="상품 리스트" title="상품 리스트" class="p_button p_button_color1" style="margin-right: 5px;">
-    <input type="button" value="상품 등록" title="상품 등록" class="p_button p_button_color2">
+    <input type="button" value="상품 등록" id="product_ok" title="상품 등록" class="p_button p_button_color2">
     </span>
 </div>
 </section>
 </main>
+</form>
 <footer class="main_copyright">
     <div>
         Copyright ⓒ 2024 shopbag All rights reserved.
@@ -158,6 +172,18 @@ $(document).ready(function(){
 	$("#cate").click(function(){
 	location.href='./cate_write.jsp';
 	});
+	
+	
+	$("#product_ok").click(function(){
+		if(){
+			
+		}else{
+			
+		frm.action="./product_writeok.do";
+		frm.method="post";
+		frm.submit();
+		}
+	});
 });
-</script>
+
 </html>

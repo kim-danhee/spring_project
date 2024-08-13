@@ -97,12 +97,13 @@
         <input type="button" value=" 카테고리 생성" id="cate" title="카테고리 생성" class="p_button p_button_color2" style="margin-right: 5px;">
         </span>
     </div>
-</section>
+</section> 
 </main>
 <footer class="main_copyright">
     <div>
         Copyright ⓒ 2024 shopbag All rights reserved.
     </div>
+    
 </footer>
 </form>
 </body>

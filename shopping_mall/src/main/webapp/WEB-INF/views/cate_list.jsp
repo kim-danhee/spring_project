@@ -83,7 +83,7 @@
         <li><img src="./ico/right.svg"></li>
         <li><img src="./ico/double_right.svg"></li>
     </ul>
-</div>
+</div>  
 <div class="subpage_view4">
     <input type="button" value="카테고리 삭제" title="카테고리 삭제" class="p_button">
     <span style="float: right;">

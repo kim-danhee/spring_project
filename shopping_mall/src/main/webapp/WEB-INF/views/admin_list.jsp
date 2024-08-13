@@ -57,7 +57,7 @@
 				</ol>
 				<ol class="new_admin_none">
 					<li>신규 등록된 관리자가 없습니다.</li>
-				</ol>
+				</ol> 
 				<cr:forEach var="listdata" items="${list}">
 				<ol class="new_admin_lists2">
 					<li>${listdata.midx}</li>

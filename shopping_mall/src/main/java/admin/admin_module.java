@@ -19,6 +19,11 @@ public class admin_module {
 		
 		return dao;
 	}
+	//상품등록 페이지
+	public int product_write(admin_dao dao) {
+		int result = tm.insert("shopping_db.product_write", dao);
+		return result;
+	}
 	
 	
 	//카테고리 리스트
