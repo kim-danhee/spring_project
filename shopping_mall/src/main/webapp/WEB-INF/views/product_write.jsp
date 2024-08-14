@@ -94,7 +94,7 @@
         </li>
     </ul>
     <ul>
-        <li>할인가격</li>
+        <li>할인가격</li> 
         <li>
             <input type="text" class="product_input3" maxlength="7" name="psaleprice" value="" readonly> <span class="help_text">※ 할인율이 0%일 경우 할인가격은 0으로 처리 합니다.</span>
         </li>
