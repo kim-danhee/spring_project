@@ -9,7 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository("shopping")
-public class admin_module {
+public class admin_module{
 
 	@Resource(name = "template2")
 	private SqlSessionTemplate tm;

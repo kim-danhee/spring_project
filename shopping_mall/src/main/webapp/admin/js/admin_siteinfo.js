@@ -1,4 +1,4 @@
-function save(e){
+function save(e){ 
 	frm.semail.value =e;
 	
 	if(frm.sptitle.value == ""){

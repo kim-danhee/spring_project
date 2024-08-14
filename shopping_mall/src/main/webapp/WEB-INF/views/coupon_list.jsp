@@ -20,7 +20,7 @@
 				<th>만료기한</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody> 
 			<tr>
 				<td>${stringList[0]}</td>
 				<td>${stringList[1]}</td>

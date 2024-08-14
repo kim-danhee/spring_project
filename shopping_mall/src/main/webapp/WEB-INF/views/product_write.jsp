@@ -9,7 +9,7 @@
 	while(w <7){
 		pcode += rd.nextInt(9);
 		w++;
-	}
+	} 
 	request.setAttribute("pcode", pcode);
 %>
 <!DOCTYPE html>
@@ -174,16 +174,11 @@ $(document).ready(function(){
 	});
 	
 	
-	$("#product_ok").click(function(){
-		if(){
-			
-		}else{
-			
+	$("#product_ok").click(function(){		
 		frm.action="./product_writeok.do";
 		frm.method="post";
 		frm.submit();
-		}
 	});
 });
-
+</script>
 </html>

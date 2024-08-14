@@ -35,7 +35,7 @@ public class admin_Controller {
 		else {
 			this.pw.print("<script> alert('등록에 실패하였습니다.'); history.go(-1); </script>");
 		}
-		
+	
 		return null;
 	}
 
